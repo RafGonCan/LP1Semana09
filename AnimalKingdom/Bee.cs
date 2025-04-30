@@ -9,7 +9,7 @@ namespace AnimalKingdom
     {
         public override string Sound()
         {
-            return base.Sound() + "Buzz";
+            return base.Sound() + "Bzz";
         }
     }
 }
