@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Security;
 
 namespace PlayerManager3
@@ -122,6 +123,7 @@ namespace PlayerManager3
         /// </param>
         private static void ListPlayers(IEnumerable<Player> playerList)
         {
+
             foreach (Player player in playerList)
             {
                 Console.WriteLine(player.Name + " " + player.Score);
