@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security;
 
 namespace PlayerManager1 // >>> Change to PlayerManager2 for exercise 4 <<< //
 {
@@ -62,7 +63,7 @@ namespace PlayerManager1 // >>> Change to PlayerManager2 for exercise 4 <<< //
                         ListPlayers(playerList);
                         break;
                     case "3":
-                        ListPlayersWithScoreGreaterThan();
+                        ListPlayersWithScoreGreaterThan(50);
                         break;
                     case "4":
                         Console.WriteLine("Bye!");
@@ -86,9 +87,14 @@ namespace PlayerManager1 // >>> Change to PlayerManager2 for exercise 4 <<< //
         /// </summary>
         private void ShowMenu()
         {
-            // /////////////////// //
-            // COMPLETE ME PLEASE! //
-            // /////////////////// //
+            Console.Clear();
+            Console.WriteLine("Player listing program");
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("1. Insert a new player");
+            Console.WriteLine("2. List all players");
+            Console.WriteLine("3. List players with score greater than...");
+            Console.WriteLine("4. Quit");
+            Console.Write("\nChoose an option: ");
         }
 
         /// <summary>
@@ -96,9 +102,13 @@ namespace PlayerManager1 // >>> Change to PlayerManager2 for exercise 4 <<< //
         /// </summary>
         private void InsertPlayer()
         {
-            // /////////////////// //
-            // COMPLETE ME PLEASE! //
-            // /////////////////// //
+            Console.Write("Enter player name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter player score: ");
+            string scorestring = Console.ReadLine();
+
+            int score = Convert.ToInt32(scorestring);
         }
 
         /// <summary>
@@ -112,19 +122,28 @@ namespace PlayerManager1 // >>> Change to PlayerManager2 for exercise 4 <<< //
         /// </param>
         private static void ListPlayers(IEnumerable<Player> playersToList)
         {
-            // /////////////////// //
-            // COMPLETE ME PLEASE! //
-            // /////////////////// //
+            foreach (Player player in playersToList)
+            {
+                Console.WriteLine(player.Name + " " + player.Score);
+            }
         }
 
         /// <summary>
         /// Show all players with a score higher than a user-specified value.
         /// </summary>
-        private void ListPlayersWithScoreGreaterThan()
+        private void ListPlayersWithScoreGreaterThan(int minScore)
         {
-            // /////////////////// //
-            // COMPLETE ME PLEASE! //
-            // /////////////////// //
+            Console.Write("Enter minimum score: ");
+            string minScoreString = Console.ReadLine();
+
+            int minScoreConvert = Convert.ToInt32(minScoreString);
+
+            // Get players with a score higher than the given value
+            IEnumerable<Player> playersWithScoreGreaterThan =
+                GetPlayersWithScoreGreaterThan(minScoreConvert);
+
+            // Show the players
+            ListPlayers(playersWithScoreGreaterThan);
         }
 
         /// <summary>
@@ -136,9 +155,7 @@ namespace PlayerManager1 // >>> Change to PlayerManager2 for exercise 4 <<< //
         /// </returns>
         private IEnumerable<Player> GetPlayersWithScoreGreaterThan(int minScore)
         {
-            // /////////////////// //
-            // COMPLETE ME PLEASE! //
-            // /////////////////// //
+            return playerList.FindAll(player => player.Score > minScore);
         }
     }
 }
